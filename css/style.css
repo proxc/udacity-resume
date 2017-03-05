@@ -121,6 +121,26 @@ a {
   background-color: #f3f3f3;
   padding-bottom: 10px;
   clear: both;
+  transition: background-color .3s;
+}
+
+.gray:hover {
+  background-color: #fff1d5;
+  transition: background-color .3s;
+}
+
+#projects:hover {
+  background-color: #fff1d5;
+  transition: background-color .3s;
+}
+
+#mapDiv:hover {
+  background-color: #fff1d5;
+  transition: background-color .3s;
+}
+
+#projects, #mapDiv, #workExperience, #education {
+  transition: background-color .3s;
 }
 
 .dark-gray {

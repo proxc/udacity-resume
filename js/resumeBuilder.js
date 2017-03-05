@@ -1,4 +1,4 @@
-var resume = function() {
+
   var bio = {
     'name': 'Chad McRann',
     'role': 'Developer',
@@ -7,27 +7,27 @@ var resume = function() {
       'email': 'mcrannch@gmail.com',
       'github': 'proxc',
       'twiter': '',
-      'location': 'Reno'
+      'location': 'Reno, NV'
     },
     'welcomeMessage': 'Welcome to this place',
     'skills': [
       'breaking things', 'building things', 'keep on keeping on'
     ],
-    'bioPic': 'images/fry.jpg'
+    'biopic': 'images/fry.jpg'
   };
 
   var work = {
     'jobs': [{
         'employer': 'Swift Communications',
         'title': 'Developer',
-        'location': 'Reno',
+        'location': 'Reno, NV',
         'dates': '2012 - 2014',
         'description': 'Build newspaper websites'
       },
       {
         'employer': 'Noble Studios',
         'title': 'Frontend Developer',
-        'location': 'Reno',
+        'location': 'Reno, NV',
         'dates': '2014 - prensent',
         'description': 'Build lots of websites'
       },
@@ -51,7 +51,7 @@ var resume = function() {
         'title': 'Fargo',
         'dates': '2017',
         'description': 'Fargo North Dakota',
-        'images': []
+        'images': ['http://www.fargomoorhead.org/assets/templates/fmcvb/images/logo.gif']
       }
     ]
   };
@@ -60,7 +60,7 @@ var resume = function() {
     'schools': [{
       'name': 'University of Wyoming',
       'location': 'Laramie, Wy',
-      'date': '2011',
+      'dates': '2011',
       'degree': 'BS',
       'url': 'http://www.uwyo.edu/',
       'majors': ['cs']
@@ -74,6 +74,7 @@ var resume = function() {
   };
 
   var tools = {};
+  var map = {};
 
   tools.prepend = function(selector, newString) {
     $(selector).prepend(newString);
@@ -93,14 +94,7 @@ var resume = function() {
     return formatted;
   };
 
-  var build = function() {
-    bio.buildBio();
-    work.buildJobs();
-    projects.buildProjects();
-    education.buildEducation();
-  };
-
-  bio.buildBio = function() {
+  bio.display = function() {
     bio.buildHeader();
     bio.buildContact();
     bio.buildImage();
@@ -130,7 +124,7 @@ var resume = function() {
   };
 
   bio.buildImage = function() {
-    tools.append('#header', tools.replace(HTMLbioPic, bio.bioPic));
+    tools.append('#header', tools.replace(HTMLbioPic, bio.biopic));
     tools.append('#header', tools.replace(HTMLwelcomeMsg, bio.welcomeMessage));
   };
 
@@ -141,23 +135,25 @@ var resume = function() {
     }
   };
 
-  work.buildJobs = function() {
+  work.display = function() {
     for (var i = 0; i < work.jobs.length; i++) {
       tools.append('#workExperience', HTMLworkStart);
       var formattedEmployer = tools.replace(HTMLworkEmployer, work.jobs[i].employer);
       var formattedTitle = tools.replace(HTMLworkTitle, work.jobs[i].title);
       var formattedEmployerTitle = formattedEmployer + formattedTitle;
 
+      var formattedLocation = tools.replace(HTMLworkLocation, work.jobs[i].location);
       var formattedDates = tools.replace(HTMLworkDates, work.jobs[i].dates);
       var formattedDescription = tools.replace(HTMLworkDescription, work.jobs[i].description);
 
       tools.append('.work-entry:last', formattedEmployerTitle);
+      tools.append('.work-entry:last', formattedLocation);
       tools.append('.work-entry:last', formattedDates);
       tools.append('.work-entry:last', formattedDescription);
     }
   };
 
-  projects.buildProjects = function() {
+  projects.display = function() {
     for (var i = 0; i < projects.projects.length; i++) {
       tools.append('#projects', HTMLprojectStart);
       tools.append('.project-entry:last', tools.replace(HTMLprojectTitle, projects.projects[i].title));
@@ -169,14 +165,14 @@ var resume = function() {
     }
   };
 
-  education.buildEducation = function() {
+  education.display = function() {
     for (var i = 0; i < education.schools.length; i++) {
       var name = tools.replace(HTMLschoolName, education.schools[i].name);
       var degree = tools.replace(HTMLschoolDegree, education.schools[i].degree);
       var title = name + degree;
       tools.append('#education', HTMLschoolStart);
       tools.append('.education-entry:last', title);
-      tools.append('.education-entry:last', tools.replace(HTMLschoolDates, education.schools[i].date));
+      tools.append('.education-entry:last', tools.replace(HTMLschoolDates, education.schools[i].dates));
       tools.append('.education-entry:last', tools.replace(HTMLschoolMajor, education.schools[i].majors));
       tools.append('.education-entry:last', tools.replace(HTMLschoolLocation, education.schools[i].location));
     }
@@ -193,7 +189,13 @@ var resume = function() {
     }
   };
 
+  map.display = function() {
+    tools.append('#mapDiv', googleMap);
+  }
 
-  build();
+  bio.display();
+  work.display();
+  projects.display();
+  education.display();
+  map.display();
 
-}();
