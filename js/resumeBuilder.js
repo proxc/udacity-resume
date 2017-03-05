@@ -1,83 +1,76 @@
-
 var resume = function() {
   var bio = {
-    'name' : 'Chad McRann',
-    'role' : 'Developer',
-    'contacts' : {
-      'mobile' : '555-555-5555',
-      'email' : 'mcrannch@gmail.com',
-      'github' : 'proxc',
-      'twiter' : '',
-      'location' : 'Reno'
+    'name': 'Chad McRann',
+    'role': 'Developer',
+    'contacts': {
+      'mobile': '555-555-5555',
+      'email': 'mcrannch@gmail.com',
+      'github': 'proxc',
+      'twiter': '',
+      'location': 'Reno'
     },
-    'welcomeMessage' : 'Welcome to this place',
-    'skills' : [
+    'welcomeMessage': 'Welcome to this place',
+    'skills': [
       'breaking things', 'building things', 'keep on keeping on'
     ],
-    'bioPic' : 'images/fry.jpg'
+    'bioPic': 'images/fry.jpg'
   };
 
   var work = {
-    'jobs' : [
-      {
-        'employer' : 'Swift Communications',
-        'title' : 'Developer',
-        'location' : 'Reno',
-        'dates' : '2012 - 2014',
-        'description' : 'Build newspaper websites'
+    'jobs': [{
+        'employer': 'Swift Communications',
+        'title': 'Developer',
+        'location': 'Reno',
+        'dates': '2012 - 2014',
+        'description': 'Build newspaper websites'
       },
       {
-        'employer' : 'Noble Studios',
-        'title' : 'Frontend Developer',
-        'location' : 'Reno',
-        'dates' : '2014 - prensent',
-        'description' : 'Build lots of websites'
+        'employer': 'Noble Studios',
+        'title': 'Frontend Developer',
+        'location': 'Reno',
+        'dates': '2014 - prensent',
+        'description': 'Build lots of websites'
       },
     ]
   };
 
   var projects = {
-    'projects' : [
-     {
-      'title' : 'Yosemite.com',
-      'dates' : '2016',
-      'description' : 'yosemite national park',
-      'images' : ['http://www.yosemite.com/wp-content/uploads/2016/04/Yosemite-Falls-Slide-700x425.jpg']
-     },
-     {
-      'title' : 'TMWA.com',
-      'dates' : '2016',
-      'description' : 'Truckee Meadows Water Authority',
-      'images' : ['http://tmwa.com/wp-content/uploads/2016/11/news.jpg']
-     },
-     {
-      'title' : 'Fargo',
-      'dates' : '2017',
-      'description' : 'Fargo North Dakota',
-      'images' : []
-     }
+    'projects': [{
+        'title': 'Yosemite.com',
+        'dates': '2016',
+        'description': 'yosemite national park',
+        'images': ['http://www.yosemite.com/wp-content/uploads/2016/04/Yosemite-Falls-Slide-700x425.jpg']
+      },
+      {
+        'title': 'TMWA.com',
+        'dates': '2016',
+        'description': 'Truckee Meadows Water Authority',
+        'images': ['http://tmwa.com/wp-content/uploads/2016/11/news.jpg']
+      },
+      {
+        'title': 'Fargo',
+        'dates': '2017',
+        'description': 'Fargo North Dakota',
+        'images': []
+      }
     ]
   };
 
   var education = {
-    'schools' : [
-      {
-        'name' : 'University of Wyoming',
-        'location' : 'Laramie, Wy',
-        'date' : '2011',
-        'degree' : 'BS',
-        'url' : 'http://www.uwyo.edu/',
-        'majors' : ['cs']
-      }
-    ],
-    'onlineCourses' : [
-      {
-        'title' : 'Front-End Web Developer Nanodegree',
-        'school' : 'Udacity',
-        'dates' : '2016 - 2017',
-        'url' : 'https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001'
-      }
-    ]
+    'schools': [{
+      'name': 'University of Wyoming',
+      'location': 'Laramie, Wy',
+      'date': '2011',
+      'degree': 'BS',
+      'url': 'http://www.uwyo.edu/',
+      'majors': ['cs']
+    }],
+    'onlineCourses': [{
+      'title': 'Front-End Web Developer Nanodegree',
+      'school': 'Udacity',
+      'dates': '2016 - 2017',
+      'url': 'https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001'
+    }]
   };
 
   var tools = {};
@@ -124,14 +117,14 @@ var resume = function() {
 
   bio.buildContact = function() {
     var items = Object.keys(bio.contacts);
-    for(var i = 0; i < items.length; i++){
+    for (var i = 0; i < items.length; i++) {
       tools.append('#topContacts', tools.replaceContact(HTMLcontactGeneric, bio.contacts[items[i]], items[i]));
     }
   };
 
   bio.buildBottomContact = function() {
     var items = Object.keys(bio.contacts);
-    for(var i = 0; i < items.length; i++){
+    for (var i = 0; i < items.length; i++) {
       tools.append('#footerContacts', tools.replaceContact(HTMLcontactGeneric, bio.contacts[items[i]], items[i]));
     }
   };
@@ -143,13 +136,13 @@ var resume = function() {
 
   bio.buildSkills = function() {
     tools.append('#header', HTMLskillsStart);
-    for(var i = 0; i < bio.skills.length; i++) {
+    for (var i = 0; i < bio.skills.length; i++) {
       tools.append('#skills', tools.replace(HTMLskills, bio.skills[i]));
     }
   };
 
   work.buildJobs = function() {
-    for(var i = 0; i < work.jobs.length; i++){
+    for (var i = 0; i < work.jobs.length; i++) {
       tools.append('#workExperience', HTMLworkStart);
       var formattedEmployer = tools.replace(HTMLworkEmployer, work.jobs[i].employer);
       var formattedTitle = tools.replace(HTMLworkTitle, work.jobs[i].title);
@@ -165,22 +158,22 @@ var resume = function() {
   };
 
   projects.buildProjects = function() {
-    for(var i = 0; i < projects.projects.length; i++){
+    for (var i = 0; i < projects.projects.length; i++) {
       tools.append('#projects', HTMLprojectStart);
       tools.append('.project-entry:last', tools.replace(HTMLprojectTitle, projects.projects[i].title));
       tools.append('.project-entry:last', tools.replace(HTMLprojectDates, projects.projects[i].dates));
       tools.append('.project-entry:last', tools.replace(HTMLprojectDescription, projects.projects[i].description));
-      for(var x = 0; x < projects.projects[i].images.length; x++ ){
+      for (var x = 0; x < projects.projects[i].images.length; x++) {
         tools.append('.project-entry:last', tools.replace(HTMLprojectImage, projects.projects[i].images[x]));
       }
     }
   };
 
   education.buildEducation = function() {
-    for(var i = 0; i < education.schools.length; i++) {
+    for (var i = 0; i < education.schools.length; i++) {
       var name = tools.replace(HTMLschoolName, education.schools[i].name);
       var degree = tools.replace(HTMLschoolDegree, education.schools[i].degree);
-      var title = name+degree;
+      var title = name + degree;
       tools.append('#education', HTMLschoolStart);
       tools.append('.education-entry:last', title);
       tools.append('.education-entry:last', tools.replace(HTMLschoolDates, education.schools[i].date));
@@ -189,16 +182,16 @@ var resume = function() {
     }
 
     tools.append('#education', HTMLonlineClasses);
-    for(var i = 0; i < education.onlineCourses.length; i++) {
-      var name = tools.replace(HTMLonlineTitle, education.onlineCourses[i].title);
-      var school = tools.replace(HTMLonlineSchool, education.onlineCourses[i].school);
-      var title = name+school;
+    for (var x = 0; x < education.onlineCourses.length; x++) {
+      var onlineName = tools.replace(HTMLonlineTitle, education.onlineCourses[x].title);
+      var school = tools.replace(HTMLonlineSchool, education.onlineCourses[x].school);
+      var onlineTitle = onlineName + school;
       tools.append('#education', HTMLschoolStart);
-      tools.append('.education-entry:last', title);
-      tools.append('.education-entry:last', tools.replace(HTMLonlineDates, education.onlineCourses[i].dates));
-      tools.append('.education-entry:last', tools.replace(HTMLonlineURL, education.onlineCourses[i].url));
+      tools.append('.education-entry:last', onlineTitle);
+      tools.append('.education-entry:last', tools.replace(HTMLonlineDates, education.onlineCourses[x].dates));
+      tools.append('.education-entry:last', tools.replace(HTMLonlineURL, education.onlineCourses[x].url));
     }
-  }
+  };
 
 
   build();
